@@ -5,6 +5,5 @@ public interface DB {
 	public String[][] query(String q);//construim query SQL y tiene que ser valida
 	public boolean close();
 	
-	
 
 }
