@@ -3,6 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import domain.EstadistiquesEnginyeria;
@@ -12,7 +13,7 @@ class EstadistiquesEnginyeriaTest {
 	private MockDB mockDB;
     private EstadistiquesEnginyeria estadistiques;
 	
-	@Before
+	@BeforeEach
 	public void setUp() {
 		mockDB = new MockDB();
 		estadistiques = new EstadistiquesEnginyeria(mockDB);
@@ -29,13 +30,13 @@ class EstadistiquesEnginyeriaTest {
 	@Test
 	void testQueryDB() {
 		try {
-			String[][] response = mockDB.query("SELECT * FROM notas WHERE assignatura = FISICA");
+			String[][] response = mockDB.query("SELECT * FROM notas WHERE assignatura = Fisica");
 		} catch (IllegalStateException e) {
 			assertEquals(e.getMessage(), "La base de dades no està connectada");// BD no esta conectada
 		}
 		
 		mockDB.connect();
-		String[][] response = mockDB.query("SELECT * FROM notas WHERE assignatura = FISICA");
+		String[][] response = mockDB.query("SELECT * FROM notas WHERE assignatura = Fisica");
 		assertNotNull(response);
 		assertEquals(4, response.length); // Hauria de retornar 4 files d'alumnes
 		mockDB.close();
@@ -44,8 +45,8 @@ class EstadistiquesEnginyeriaTest {
 	@Test
 	void testPerCentAprovats() {
 		
-		Double response = estadistiques.PerCentAprovats("Fisica", "NFinal");
-		assertEquals(response, 50.0, 0.001);//2 aprovats (7.7, 5.5) -> 50%
+		Double result = estadistiques.PerCentAprovats("Fisica", "NFinal");
+		assertEquals(50.0, result, 0.001);//2 aprovats (7.7, 5.5) -> 50%
 	}
 	
 	@Test

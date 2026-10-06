@@ -14,12 +14,12 @@ public class MockDB implements DB{
 		if (!connected) {
             throw new IllegalStateException("La base de dades no està connectada");
         }
-		if (q.contains("FISICA")) {
+		if (q.contains("Fisica")) {
             return new String[][] {
-                {"11111", "FISICA", "7.5", "8.0", "7.7"},
-                {"22222", "FISICA", "4.0", "3.0", "3.5"},
-                {"33333", "FISICA", "NP",  "5.0", "NP"},
-                {"44444", "FISICA", "5.0", "6.0", "5.5"}
+                {"11111", "Fisica", "7.5", "8.0", "7.7"},
+                {"22222", "Fisica", "4.0", "3.0", "3.5"},
+                {"33333", "Fisica", "NP",  "5.0", "NP"},
+                {"44444", "Fisica", "5.0", "6.0", "5.5"}
             };
         }
         
